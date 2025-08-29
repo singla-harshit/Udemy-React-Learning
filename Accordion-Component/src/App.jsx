@@ -24,18 +24,25 @@ function App() {
 }
 
 function Accordian({ data }) {
+
+  const [currOpen, setCurrOpen] = useState(2);
+
   return (
     <div className="accordion">
       {data.map((item, i) => (
-        <AccordianItem number={i} title={item.title} text={item.text} />
+        <AccordianItem setCurrOpen={setCurrOpen} currOpen={currOpen} number={i} title={item.title} text={item.text} />
       ))}
     </div>
   );
 }
 
-function AccordianItem({ number, title, text }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const handleToggle = () => setIsOpen((isOpen) => !isOpen);
+function AccordianItem({ number, title, text ,setCurrOpen , currOpen}) {
+
+  const isOpen = number === currOpen;
+  function handleToggle(){
+    setCurrOpen( isOpen ? null : number);
+  }
+
   return (
     <div className={`item ${isOpen ? "open" : ""}`} onClick={handleToggle}>
       <p className="number">

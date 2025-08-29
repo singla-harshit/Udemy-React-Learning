@@ -19,15 +19,16 @@ function App() {
 
   const closeHandler = () => {
     setIsOpen(!isOpen);
-  };
+  }
 
   return (
+    
     <>
-      <button className="close" onClick={closeHandler}>
-        &times;
-      </button>
 
-      {isOpen && (
+      <button className="close" onClick={closeHandler}>&times;</button>
+
+      {
+        isOpen && 
         <div className="steps">
           <div className="numbers">
             <div className={`${step >= 1 ? "active" : ""}`}>1</div>
@@ -38,23 +39,22 @@ function App() {
             Step {step} : {messages[step - 1]}
           </p>
           <div className="buttons">
-            <Button bgColor="#7950f2" textColor="#fff" clickHandler={handlePrev}> <span>👈</span> Previous </Button>
-            <Button bgColor="#7950f2" textColor="#fff" clickHandler={handleNext}> Next <span>👉</span> </Button>
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
+              onClick={handlePrev}
+            >
+              Previous
+            </button>
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
+              onClick={handleNext}
+            >
+              Next
+            </button>
           </div>
         </div>
-      )}
+      }
     </>
-  );
-}
-
-function Button({textColor , bgColor ,  clickHandler , children}) {
-  return (
-    <button
-      style={{ backgroundColor: bgColor, color: textColor }}
-      onClick={clickHandler}
-    >
-      {children}
-    </button>
   );
 }
 
